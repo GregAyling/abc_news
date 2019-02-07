@@ -11,3 +11,7 @@ For each news item listed, the following information is displayed:
 * Description
 * Link to news item page
 * List of topics
+
+To run:
+* pip install -r requirements.txt
+* python news.py
