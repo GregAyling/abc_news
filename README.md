@@ -11,3 +11,5 @@ For each news item listed, the following information is displayed:
 * Description
 * Link to news item page
 * List of topics
+
+![Sample News File]sample_newsfile.html
