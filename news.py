@@ -19,7 +19,7 @@ def _updated_heading(original_heading):
     """
     Look for special last word and separate it from rest of sentence.
     """
-    special_last_words = ["Explainer", "Analysis", "Opinion"]
+    special_last_words = ["Explainer", "Analysis", "Opinion", "Feature"]
     word_list = original_heading.split()
     last_word = word_list[-1]
     pre_last_word = ' '.join(word_list[0:-1])
