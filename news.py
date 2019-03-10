@@ -43,7 +43,7 @@ if __name__ == "__main__":
         # Add header.
         htmlfile.write("<head>")
         htmlfile.write(_tagged('title', 'ABC News (Just In)'))
-        htmlfile.write('<link rel="stylesheet" type="text/css" href="default.css">')
+        htmlfile.write('<link rel="stylesheet" type="text/css" href="news.css">')
         htmlfile.write("</head>")
         htmlfile.write("<body>")
 
