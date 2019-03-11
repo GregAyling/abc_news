@@ -55,7 +55,7 @@ if __name__ == "__main__":
             linkpage = _ABC_NEWS_JUSTIN_PAGE + article.find('a')['href']
             if len(p_lines) > 2:
                 topics = p_lines[2].get_text()
-                if "sport" not in topics and "australia-day" not in topics and "human-interest" not in topics:
+                if "sport" not in topics and "australia-day" not in topics and "human-interest" not in topics and "murder-and-manslaughter" not in topics:
                     htmlfile.write(_tagged("p", _tagged("h1",heading)))
                     htmlfile.write(_tagged("p", _tagged("h2","- " + summary)))
                     htmlfile.write(_tagged("p", _tagged("h3",_linked('LINK',linkpage))))

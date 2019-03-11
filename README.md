@@ -5,6 +5,7 @@ All news items are listed, except those which contain the following topics (whic
 * sport
 * australia-day
 * human-interest
+* murder-and-manslaaughter
 
 For each news item listed, the following information is displayed:
 * Title
