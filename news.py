@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 # Constants.
 _ABC_NEWS_JUSTIN_PAGE= "http://www.abc.net.au/news/justin"
 _NEWS_FILENAME = 'newsfile.html'
+_UNWANTED_TOPICS = ["sport", "australia-day", "human-interest" , "sexual-offences" , "murder-and-manslaughter", "anzac-day"]
 
 # General tag adder.
 def _tagged(tag,textin):
@@ -14,6 +15,13 @@ def _tagged(tag,textin):
 # Page linker.
 def _linked(linktext,linkto):
     return('<a href="' + linkto + '">' + linktext + "</a>")
+
+def _topics_ok(topic_list):
+    for topic in _UNWANTED_TOPICS:
+        if topic in topic_list:
+            return False
+    return True
+
     
 def _updated_heading(original_heading):
     """
@@ -22,9 +30,18 @@ def _updated_heading(original_heading):
     special_last_words = ["Explainer", "Analysis", "Opinion", "Feature"]
     word_list = original_heading.split()
     last_word = word_list[-1]
-    pre_last_word = ' '.join(word_list[0:-1])
+    if last_word == "(photos)":
+        photos = True
+        last_word = word_list[-2]
+        pre_last_word = ' '.join(word_list[0:-2])
+    else:
+        photos = False
+        last_word = word_list[-1]
+        pre_last_word = ' '.join(word_list[0:-1])
     if last_word in special_last_words:
-        new_heading = pre_last_word + " (" + last_word + ")"
+        new_heading = pre_last_word + " [" + last_word + "]"
+        if photos:
+            new_heading = new_heading + " (photos)"
     else:
         new_heading = original_heading
     return new_heading
@@ -55,7 +72,7 @@ if __name__ == "__main__":
             linkpage = _ABC_NEWS_JUSTIN_PAGE + article.find('a')['href']
             if len(p_lines) > 2:
                 topics = p_lines[2].get_text()
-                if "sport" not in topics and "australia-day" not in topics and "human-interest" not in topics and "murder-and-manslaughter" not in topics:
+                if _topics_ok(topics):
                     htmlfile.write(_tagged("p", _tagged("h1",heading)))
                     htmlfile.write(_tagged("p", _tagged("h2","- " + summary)))
                     htmlfile.write(_tagged("p", _tagged("h3",_linked('LINK',linkpage))))
